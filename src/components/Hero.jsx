@@ -31,9 +31,9 @@ export default function Hero() {
 
           {/* Subtitle */}
           <p className="text-base sm:text-lg md:text-xl text-[#3A506B] max-w-2xl mx-auto leading-relaxed mb-10 font-normal">
-            Dịch vụ thiết kế <strong className="text-[#0B132B] font-bold">UI/UX độc quyền</strong> & lập trình{' '}
-            <strong className="text-[#0B132B] font-bold">Website, Mobile App, Web App/SaaS</strong> theo yêu cầu. 
-            Tối ưu tốc độ vượt trội, bảo mật cao và <span className="text-[#0D7A78] font-bold">bàn giao 100% mã nguồn</span>.
+            Dịch vụ thiết kế & phát triển phần mềm{' '}
+            <strong className="text-[#0B132B] font-bold">Website, Mobile App, Web App/SaaS</strong> theo yêu cầu.
+            Tối ưu tốc độ vượt trội, bảo mật cao.
           </p>
 
           {/* Action Buttons */}
@@ -81,7 +81,7 @@ export default function Hero() {
           {/* Card frame */}
           <div className="relative rounded-2xl p-1 bg-gradient-to-b from-[#5BC0BE]/40 via-slate-200 to-transparent shadow-2xl">
             <div className="bg-white rounded-xl overflow-hidden border border-slate-200 p-4 sm:p-6 md:p-8">
-              
+
               {/* Window Header */}
               <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
                 <div className="flex items-center gap-2">
