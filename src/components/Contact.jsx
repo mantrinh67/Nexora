@@ -42,17 +42,33 @@ Mô tả thêm về ý tưởng của tôi:`
     }
   }, [initialProject]);
 
-  const handleSubmit = (e) => {
+  const N8N_WEBHOOK_URL = 'http://localhost:5678/webhook/924a2b83-36d5-4e3f-a74d-a60f19825e6f';
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) {
       alert('Vui lòng điền họ tên và số điện thoại / Zalo để chúng tôi liên hệ hỗ trợ!');
       return;
     }
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const res = await fetch(N8N_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          submittedAt: new Date().toISOString(),
+          source: 'Nexora Landing Page'
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
       setIsSubmitted(true);
-    }, 700);
+    } catch (err) {
+      console.error('Webhook error:', err);
+      alert('Gửi thất bại, vui lòng thử lại hoặc liên hệ trực tiếp qua Zalo/Hotline!');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -61,7 +77,7 @@ Mô tả thêm về ý tưởng của tôi:`
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-[#5BC0BE]/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs font-bold text-[#0D7A78] uppercase tracking-wider mb-4 shadow-sm">
@@ -77,10 +93,10 @@ Mô tả thêm về ý tưởng của tôi:`
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          
+
           {/* Left Column: Direct Contact & Benefits (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
-            
+
             {/* Quick Contact Cards */}
             <div className="bg-slate-50 rounded-2xl p-6 sm:p-7 border border-slate-200 space-y-5 shadow-sm">
               <h3 className="text-lg font-bold text-[#0B132B] mb-2">
@@ -153,7 +169,7 @@ Mô tả thêm về ý tưởng của tôi:`
           {/* Right Column: Lead Form (7 cols) */}
           <div className="lg:col-span-7">
             <div className="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-md relative">
-              
+
               {isSubmitted ? (
                 <div className="py-12 text-center space-y-4 animate-in fade-in">
                   <div className="w-16 h-16 rounded-full bg-teal-100 text-[#0D7A78] flex items-center justify-center mx-auto">

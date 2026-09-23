@@ -24,21 +24,16 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/90 backdrop-blur-xl border-b border-slate-200/80 shadow-sm py-3'
-          : 'bg-transparent py-5'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        ? 'bg-white/90 backdrop-blur-xl border-b border-slate-200/80 shadow-sm py-3'
+        : 'bg-transparent py-5'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Brand Logo */}
           <a href="#" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#0B132B] via-[#3A506B] to-[#5BC0BE] p-0.5 shadow-sm group-hover:scale-105 transition-transform">
-              <div className="w-full h-full bg-[#0B132B] rounded-[10px] flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-[#5BC0BE]" />
-              </div>
-            </div>
+
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="text-2xl font-extrabold tracking-tight text-[#0B132B] font-['Space_Grotesk']">
@@ -46,9 +41,7 @@ export default function Navbar() {
                 </span>
                 <span className="inline-block w-2 h-2 rounded-full bg-[#5BC0BE] animate-ping"></span>
               </div>
-              <p className="text-[10px] tracking-wider text-[#3A506B] font-medium uppercase -mt-1">
-                Digital Studio
-              </p>
+
             </div>
           </a>
 

@@ -32,7 +32,7 @@ export default function Hero() {
           {/* Subtitle */}
           <p className="text-base sm:text-lg md:text-xl text-[#3A506B] max-w-2xl mx-auto leading-relaxed mb-10 font-normal">
             Dịch vụ thiết kế & phát triển phần mềm{' '}
-            <strong className="text-[#0B132B] font-bold">Website, Mobile App, Web App/SaaS</strong> theo yêu cầu.
+            <strong className="text-[#0B132B] font-bold">Website, Mobile App, Web App</strong> theo yêu cầu.
             Tối ưu tốc độ vượt trội, bảo mật cao.
           </p>
 
@@ -60,10 +60,6 @@ export default function Hero() {
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-[#0D7A78]" />
               <span>Cam kết không phát sinh chi phí</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-[#0D7A78]" />
-              <span>Bàn giao 100% Source Code</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-[#0D7A78]" />
