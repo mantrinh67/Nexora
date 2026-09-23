@@ -42,17 +42,43 @@ Mô tả thêm về ý tưởng của tôi:`
     }
   }, [initialProject]);
 
-  const handleSubmit = (e) => {
+  const API_ENDPOINT = import.meta.env.VITE_API_URL 
+    ? `${import.meta.env.VITE_API_URL}/api/leads`
+    : 'http://localhost:5010/api/leads';
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) {
       alert('Vui lòng điền họ tên và số điện thoại / Zalo để chúng tôi liên hệ hỗ trợ!');
       return;
     }
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const res = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email || null,
+          service: formData.service,
+          budget: formData.budget,
+          message: formData.message || null,
+          source: 'Nexora Landing Page'
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error: ${res.status}`);
+      }
+
       setIsSubmitted(true);
-    }, 700);
+    } catch (err) {
+      console.error('Lỗi khi gửi yêu cầu:', err);
+      alert('Không thể kết nối đến máy chủ. Vui lòng thử lại hoặc gọi trực tiếp Hotline/Zalo!');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

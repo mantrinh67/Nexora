@@ -1,0 +1,21 @@
+# Node / Frontend
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# .NET / Backend
+**/bin/
+**/obj/
+**/appsettings.Development.json
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+
+# OS
+.DS_Store
+Thumbs.db
