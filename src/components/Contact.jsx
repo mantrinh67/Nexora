@@ -42,33 +42,17 @@ Mô tả thêm về ý tưởng của tôi:`
     }
   }, [initialProject]);
 
-  const N8N_WEBHOOK_URL = 'http://localhost:5678/webhook/924a2b83-36d5-4e3f-a74d-a60f19825e6f';
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) {
       alert('Vui lòng điền họ tên và số điện thoại / Zalo để chúng tôi liên hệ hỗ trợ!');
       return;
     }
     setLoading(true);
-    try {
-      const res = await fetch(N8N_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          submittedAt: new Date().toISOString(),
-          source: 'Nexora Landing Page'
-        }),
-      });
-      if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
-      setIsSubmitted(true);
-    } catch (err) {
-      console.error('Webhook error:', err);
-      alert('Gửi thất bại, vui lòng thử lại hoặc liên hệ trực tiếp qua Zalo/Hotline!');
-    } finally {
+    setTimeout(() => {
       setLoading(false);
-    }
+      setIsSubmitted(true);
+    }, 700);
   };
 
   return (
