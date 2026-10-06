@@ -10,17 +10,17 @@ export default function WhyUs() {
     },
     {
       icon: Code,
-      title: 'Bàn Giao 100% Mã Nguồn & Bản Quyền',
-      desc: 'Bạn là chủ sở hữu duy nhất của mã nguồn, cơ sở dữ liệu và file thiết kế Figma gốc. Không giữ code làm con tin, không phụ thuộc nhà cung cấp.'
+      title: 'Bàn Giao Tài Liệu',
+      desc: 'Bàn giao tài liệu dự án chi tiết, hướng dẫn sử dụng, file thiết kế.'
     },
     {
       icon: Zap,
-      title: 'Tốc Độ & Chuẩn SEO Google 90+',
-      desc: 'Áp dụng công nghệ tiên tiến (Next.js, Tailwind, tối ưu ảnh WebP) giúp website tải dưới 1 giây, đạt điểm Core Web Vitals xanh mướt trên Google.'
+      title: 'Tối Ưu Tốc Độ',
+      desc: 'Tối ưu tốc độ tải dưới 1 giây. Đảm bảo trải nghiệm mượt mà cho người dùng và tăng cường SEO.'
     },
     {
       icon: Clock,
-      title: 'Cam Kết Đúng Hạn Tiến Độ',
+      title: 'Đúng Hạn Tiến Độ',
       desc: 'Có lộ trình chi tiết theo từng tuần (Milestones). Bồi thường hợp đồng nếu bàn giao trễ hạn so với cam kết văn bản.'
     },
     {
@@ -38,7 +38,7 @@ export default function WhyUs() {
   return (
     <section id="why-us" className="py-24 relative bg-slate-50/60 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-bold text-[#0D7A78] uppercase tracking-wider mb-4 shadow-sm">

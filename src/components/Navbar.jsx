@@ -46,12 +46,12 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 bg-slate-50/90 border border-slate-200/80 px-4 py-1.5 rounded-full backdrop-blur-md shadow-inner">
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-semibold text-[#3A506B] hover:text-[#0B132B] px-3.5 py-1.5 rounded-full hover:bg-white transition-all hover:shadow-sm"
+                className="text-sm font-semibold text-[#3A506B] hover:text-[#0D7A78] transition-colors"
               >
                 {link.label}
               </a>
@@ -69,10 +69,10 @@ export default function Navbar() {
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl font-bold text-xs text-[#0B132B] bg-[#5BC0BE] hover:bg-[#7CE5E3] shadow-glow-teal-sm hover:shadow-glow-teal transition-all hover:scale-105 gap-2"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0D7A78] hover:text-[#0B132B] transition-colors"
             >
               <span>Nhận Báo Giá 60s</span>
-              <ArrowRight className="w-3.5 h-3.5 text-[#0B132B]" />
+              <ArrowRight className="w-4 h-4" />
             </a>
           </div>
 

@@ -146,10 +146,6 @@ export default function CostEstimator({ onApplyEstimate }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-bold text-[#0D7A78] uppercase tracking-wider mb-4 shadow-sm">
-            <Calculator className="w-3.5 h-3.5" />
-            <span>Minh Bạch & Rõ Ràng</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B132B] tracking-tight font-['Space_Grotesk']">
             Dự Toán Chi Phí & Thời Gian Tức Thì
           </h2>
@@ -160,10 +156,10 @@ export default function CostEstimator({ onApplyEstimate }) {
 
         {/* Calculator Main Box */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
+
           {/* Left Column: Interactive Options (8 cols) */}
           <div className="lg:col-span-8 space-y-8 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
-            
+
             {/* Step 1: Chọn loại sản phẩm */}
             <div>
               <div className="flex items-center gap-2 mb-4">
@@ -179,11 +175,10 @@ export default function CostEstimator({ onApplyEstimate }) {
                   <div
                     key={pt.id}
                     onClick={() => setSelectedProduct(pt)}
-                    className={`p-4 rounded-xl border cursor-pointer transition-all ${
-                      selectedProduct.id === pt.id
+                    className={`p-4 rounded-xl border cursor-pointer transition-all ${selectedProduct.id === pt.id
                         ? 'bg-teal-50/70 border-2 border-[#5BC0BE] shadow-sm scale-[1.01]'
                         : 'bg-slate-50/60 border-slate-200 hover:border-slate-300'
-                    }`}
+                      }`}
                   >
                     <div className="flex items-start justify-between">
                       <h4 className="text-sm font-bold text-[#0B132B] mb-1">{pt.label}</h4>
@@ -215,11 +210,10 @@ export default function CostEstimator({ onApplyEstimate }) {
                   <div
                     key={dl.id}
                     onClick={() => setSelectedDesign(dl)}
-                    className={`p-4 rounded-xl border cursor-pointer transition-all ${
-                      selectedDesign.id === dl.id
+                    className={`p-4 rounded-xl border cursor-pointer transition-all ${selectedDesign.id === dl.id
                         ? 'bg-teal-50/70 border-2 border-[#5BC0BE] shadow-sm'
                         : 'bg-slate-50/60 border-slate-200 hover:border-slate-300'
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center justify-between mb-1">
                       <h4 className="text-xs sm:text-sm font-bold text-[#0B132B]">{dl.name}</h4>
@@ -253,17 +247,15 @@ export default function CostEstimator({ onApplyEstimate }) {
                     <div
                       key={f.id}
                       onClick={() => toggleFeature(f.id)}
-                      className={`p-3 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${
-                        isChecked
+                      className={`p-3 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${isChecked
                           ? 'bg-teal-50/70 border-[#5BC0BE] text-[#0B132B] font-medium'
                           : 'bg-slate-50/60 border-slate-200 text-[#3A506B] hover:border-slate-300'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center gap-2.5">
                         <div
-                          className={`w-4 h-4 rounded flex items-center justify-center transition-colors ${
-                            isChecked ? 'bg-[#5BC0BE] text-[#0B132B]' : 'border border-slate-300 bg-white'
-                          }`}
+                          className={`w-4 h-4 rounded flex items-center justify-center transition-colors ${isChecked ? 'bg-[#5BC0BE] text-[#0B132B]' : 'border border-slate-300 bg-white'
+                            }`}
                         >
                           {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
                         </div>
@@ -283,7 +275,7 @@ export default function CostEstimator({ onApplyEstimate }) {
           {/* Right Column: High-Impact Summary Card in Deep Navy (4 cols) */}
           <div className="lg:col-span-4 sticky top-24">
             <div className="bg-[#0B132B] text-white rounded-2xl p-6 sm:p-7 border border-[#3A506B] shadow-2xl relative overflow-hidden">
-              
+
               {/* Header */}
               <div className="flex items-center justify-between pb-4 border-b border-[#3A506B]/80 mb-5">
                 <div className="flex items-center gap-2">

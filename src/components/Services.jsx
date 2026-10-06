@@ -70,10 +70,6 @@ export default function Services({ onSelectService }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-bold text-[#0D7A78] uppercase tracking-wider mb-4 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Năng Lực Cốt Lõi</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B132B] tracking-tight mb-4 font-['Space_Grotesk']">
             Dịch Vụ Thiết Kế & Phát Triển Trọn Gói
           </h2>
@@ -89,11 +85,10 @@ export default function Services({ onSelectService }) {
             return (
               <div
                 key={srv.id}
-                className={`relative rounded-2xl p-6 sm:p-8 bg-white border transition-all duration-300 group hover:-translate-y-1.5 flex flex-col justify-between shadow-sm hover:shadow-xl ${
-                  srv.popular
-                    ? 'border-[#5BC0BE] ring-1 ring-[#5BC0BE]'
-                    : 'border-slate-200 hover:border-[#5BC0BE]'
-                }`}
+                className={`relative rounded-2xl p-6 sm:p-8 bg-white border transition-all duration-300 group hover:-translate-y-1.5 flex flex-col justify-between shadow-sm hover:shadow-xl ${srv.popular
+                  ? 'border-[#5BC0BE] ring-1 ring-[#5BC0BE]'
+                  : 'border-slate-200 hover:border-[#5BC0BE]'
+                  }`}
               >
                 {/* Popular Ribbon */}
                 {srv.popular && (

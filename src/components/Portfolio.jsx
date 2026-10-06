@@ -1,22 +1,18 @@
 import React, { useState } from 'react';
 import { projectsData } from '../data/projectsData';
-import { Sparkles, ArrowRight, X, CheckCircle2 } from 'lucide-react';
+import { Sparkles, ArrowRight, X, CheckCircle2, ExternalLink } from 'lucide-react';
 
 export default function Portfolio({ onSelectProjectToQuote }) {
   const [activeTab, setActiveTab] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
 
   const categories = [
-    { id: 'all', label: 'Tất Cả Dự Án' },
-    { id: 'corporate', label: 'Website Doanh Nghiệp' },
-    { id: 'mobile', label: 'Mobile App' },
-    { id: 'webapp', label: 'Web App & SaaS' },
-    { id: 'ecommerce', label: 'E-Commerce' },
+    { id: 'all', label: 'Dự Án' }
   ];
 
   const filteredProjects = activeTab === 'all'
     ? projectsData
-    : projectsData.filter((p) => p.category === activeTab);
+    : projectsData.filter((p) => p.category === activeTab || (activeTab === 'corporate' && p.category === 'website'));
 
   const handleOpenCaseStudy = (project) => {
     setSelectedProject(project);
@@ -29,7 +25,7 @@ export default function Portfolio({ onSelectProjectToQuote }) {
   return (
     <section id="portfolio" className="py-24 relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
@@ -56,11 +52,10 @@ export default function Portfolio({ onSelectProjectToQuote }) {
             <button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                activeTab === cat.id
-                  ? 'bg-[#0B132B] text-white shadow-md scale-105'
-                  : 'bg-slate-100 text-[#3A506B] hover:bg-slate-200'
-              }`}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${activeTab === cat.id
+                ? 'bg-[#0B132B] text-white shadow-md scale-105'
+                : 'bg-slate-100 text-[#3A506B] hover:bg-slate-200'
+                }`}
             >
               {cat.label}
             </button>
@@ -77,7 +72,9 @@ export default function Portfolio({ onSelectProjectToQuote }) {
               <div>
                 {/* Visual Thumbnail Container */}
                 <div
-                  className="h-56 bg-gradient-to-br from-slate-100 via-slate-200 to-[#5BC0BE]/20 p-5 relative overflow-hidden flex flex-col justify-between border-b border-slate-200"
+                  onClick={() => handleOpenCaseStudy(project)}
+                  className="h-56 bg-gradient-to-br from-slate-100 via-slate-200 to-[#5BC0BE]/20 p-5 relative overflow-hidden flex flex-col justify-between border-b border-slate-200 cursor-pointer"
+                  title="Nhấn để xem chi tiết Case Study"
                 >
                   {/* Category Pill & Year */}
                   <div className="flex items-center justify-between z-10">
@@ -125,7 +122,10 @@ export default function Portfolio({ onSelectProjectToQuote }) {
 
                 {/* Content Section */}
                 <div className="p-6">
-                  <h3 className="text-lg sm:text-xl font-bold text-[#0B132B] mb-2 line-clamp-2 group-hover:text-[#0D7A78] transition-colors">
+                  <h3
+                    onClick={() => handleOpenCaseStudy(project)}
+                    className="text-lg sm:text-xl font-bold text-[#0B132B] mb-2 line-clamp-2 group-hover:text-[#0D7A78] transition-colors cursor-pointer"
+                  >
                     {project.title}
                   </h3>
                   <p className="text-xs sm:text-sm text-[#3A506B] mb-4 line-clamp-2 leading-relaxed">
@@ -152,44 +152,40 @@ export default function Portfolio({ onSelectProjectToQuote }) {
 
               {/* Bottom Card Action */}
               <div className="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
-                <button
-                  onClick={() => handleOpenCaseStudy(project)}
-                  className="text-xs sm:text-sm font-bold text-[#0B132B] hover:text-[#0D7A78] flex items-center gap-1.5 transition-colors cursor-pointer"
-                >
-                  <span>Xem Case Study</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#0D7A78]" />
-                </button>
+                {project.liveUrl ? (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs sm:text-sm font-bold text-[#0B132B] hover:text-[#0D7A78] flex items-center gap-1.5 transition-colors cursor-pointer group/link"
+                  >
+                    <span>Xem Dự Án</span>
+                    <ExternalLink className="w-3.5 h-3.5 text-[#0D7A78] group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                  </a>
+                ) : (
+                  <button
+                    onClick={() => handleOpenCaseStudy(project)}
+                    className="text-xs sm:text-sm font-bold text-[#0B132B] hover:text-[#0D7A78] flex items-center gap-1.5 transition-colors cursor-pointer"
+                  >
+                    <span>Xem Dự Án</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#0D7A78]" />
+                  </button>
+                )}
 
-                <button
-                  onClick={() => {
-                    if (onSelectProjectToQuote) onSelectProjectToQuote(project.title);
-                  }}
-                  className="text-xs font-bold text-[#0D7A78] hover:underline cursor-pointer"
-                >
-                  Làm giống dự án này →
-                </button>
+                <div className="flex items-center gap-2.5">
+                  <button
+                    onClick={() => {
+                      if (onSelectProjectToQuote) onSelectProjectToQuote(project.title);
+                    }}
+                    className="text-xs font-bold text-[#0D7A78] hover:underline cursor-pointer"
+                  >
+                    Làm giống dự án này →
+                  </button>
+                </div>
               </div>
             </div>
           ))}
         </div>
-
-        {/* Custom Portfolio CTA Banner */}
-        <div className="mt-16 text-center bg-slate-50 rounded-2xl p-8 border border-slate-200 shadow-sm">
-          <h3 className="text-xl sm:text-2xl font-bold text-[#0B132B] mb-2">
-            Bạn muốn xem thêm các dự án chuyên sâu khác hoặc yêu cầu Demo trực tiếp?
-          </h3>
-          <p className="text-[#3A506B] text-sm max-w-xl mx-auto mb-6">
-            Chúng tôi có kho tài liệu hơn 50+ sản phẩm mẫu trong mọi lĩnh vực (Bất động sản, Y tế, Giáo dục, Bán lẻ, Fintech).
-          </p>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#5BC0BE] text-[#0B132B] font-bold text-sm shadow-glow-teal-sm hover:bg-[#7CE5E3] hover:scale-105 transition-all"
-          >
-            <span>Yêu Cầu Nhận Portfolio PDF & Demo Trực Tiếp</span>
-            <ArrowRight className="w-4 h-4 text-[#0B132B]" />
-          </a>
-        </div>
-
       </div>
 
       {/* Case Study Detail Modal */}
@@ -208,16 +204,30 @@ export default function Portfolio({ onSelectProjectToQuote }) {
             </button>
 
             {/* Modal Header */}
-            <div className="mb-6">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#0B132B] bg-[#5BC0BE] px-3 py-1 rounded-full">
-                {selectedProject.categoryLabel}
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0B132B] mt-3 mb-2 font-['Space_Grotesk']">
-                {selectedProject.title}
-              </h3>
-              <p className="text-xs sm:text-sm text-[#3A506B]">
-                Khách hàng: <strong className="text-[#0B132B]">{selectedProject.client}</strong> • Năm triển khai: {selectedProject.year}
-              </p>
+            <div className="mb-6 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#0B132B] bg-[#5BC0BE] px-3 py-1 rounded-full">
+                  {selectedProject.categoryLabel}
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0B132B] mt-3 mb-2 font-['Space_Grotesk']">
+                  {selectedProject.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#3A506B]">
+                  Khách hàng: <strong className="text-[#0B132B]">{selectedProject.client}</strong> • Năm triển khai: {selectedProject.year}
+                </p>
+              </div>
+
+              {selectedProject.liveUrl && (
+                <a
+                  href={selectedProject.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 text-white hover:bg-[#0D7A78] text-xs font-bold transition-all shadow-sm shrink-0 self-start sm:mt-2"
+                >
+                  <span>Mở Website Thật</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-[#5BC0BE]" />
+                </a>
+              )}
             </div>
 
             {/* Impact Highlights */}
